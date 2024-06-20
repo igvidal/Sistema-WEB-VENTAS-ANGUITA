@@ -80,6 +80,22 @@
 				  	</select>
 				</div>
 		  	</div>
+
+			  <div class="column">
+		  		<label>Roles <?php echo CAMPO_OBLIGATORIO; ?></label><br>
+				<div class="select">
+				  	<select name="usuario_rol">
+				    	<option value="" selected="" >Seleccione una opción</option>
+                        <?php
+                            $datos_rol=$insLogin->seleccionarDatos("Normal","roles","*",0);
+
+                            while($campos_rol=$datos_rol->fetch()){
+                                echo '<option value="'.$campos_rol['role_id'].'">Rol '.$campos_rol['role_nombre'].'</option>';
+                            }
+                        ?>
+				  	</select>
+				</div>
+		  	</div>
 		</div>
 		<p class="has-text-centered">
 			<button type="reset" class="button is-link is-light is-rounded"><i class="fas fa-paint-roller"></i> &nbsp; Limpiar</button>

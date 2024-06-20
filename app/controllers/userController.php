@@ -18,6 +18,7 @@
 		    $clave2=$this->limpiarCadena($_POST['usuario_clave_2']);
 
 		    $caja=$this->limpiarCadena($_POST['usuario_caja']);
+			$rol=$this->limpiarCadena($_POST['usuario_rol']);
 
 
 		    # Verificando campos obligatorios #
@@ -143,6 +144,19 @@
 		        exit();
 		    }
 
+			 # Verificando roles #
+			 $check_rol=$this->ejecutarConsulta("SELECT role_id FROM roles WHERE role_id='$rol'");
+			 if($check_rol->rowCount()<=0){
+				 $alerta=[
+					 "tipo"=>"simple",
+					 "titulo"=>"Ocurrió un error inesperado",
+					 "texto"=>"El rol seleccionado no existe en el sistema",
+					 "icono"=>"error"
+				 ];
+				 return json_encode($alerta);
+				 exit();
+			 }
+
 		    # Directorio de imagenes #
     		$img_dir="../views/fotos/";
 
@@ -255,6 +269,11 @@
 					"campo_nombre"=>"caja_id",
 					"campo_marcador"=>":Caja",
 					"campo_valor"=>$caja
+				],
+				[
+					"campo_nombre"=>"role_id",
+					"campo_marcador"=>":roles",
+					"campo_valor"=>$rol
 				]
 			];
 
