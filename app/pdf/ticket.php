@@ -82,8 +82,8 @@
         foreach($venta_detalle as $detalle){
             $pdf->MultiCell(0,4,iconv("UTF-8", "ISO-8859-1",$detalle['venta_detalle_descripcion']),0,'C',false);
             $pdf->Cell(18,4,iconv("UTF-8", "ISO-8859-1",$detalle['venta_detalle_cantidad']),0,0,'C');
-            $pdf->Cell(22,4,iconv("UTF-8", "ISO-8859-1",MONEDA_SIMBOLO.number_format($detalle['venta_detalle_precio_venta'],MONEDA_SEPARADOR_MILLAR)),0,0,'C');
-            $pdf->Cell(32,4,iconv("UTF-8", "ISO-8859-1",MONEDA_SIMBOLO.number_format($detalle['venta_detalle_total'],MONEDA_SEPARADOR_MILLAR)),0,0,'C');
+            $pdf->Cell(22,4,iconv("UTF-8", "ISO-8859-1",MONEDA_SIMBOLO.number_format($detalle['venta_detalle_precio_venta'],MONEDA_DECIMALES,MONEDA_SEPARADOR_MILLAR)),0,0,'C');
+            $pdf->Cell(32,4,iconv("UTF-8", "ISO-8859-1",MONEDA_SIMBOLO.number_format($detalle['venta_detalle_total'],MONEDA_DECIMALES,MONEDA_SEPARADOR_MILLAR)),0,0,'C');
             $pdf->Ln(4);
             $pdf->Ln(3);
         }
@@ -94,13 +94,13 @@
 
         $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
         $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","TOTAL A PAGAR"),0,0,'C');
-        $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1",MONEDA_SIMBOLO.number_format($datos_venta['venta_total'],MONEDA_SEPARADOR_MILLAR).' '.MONEDA_NOMBRE),0,0,'C');
+        $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1",MONEDA_SIMBOLO.number_format($datos_venta['venta_total'],MONEDA_DECIMALES,MONEDA_SEPARADOR_MILLAR).' '.MONEDA_NOMBRE),0,0,'C');
 
         $pdf->Ln(5);
         
         $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
         $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","TOTAL PAGADO"),0,0,'C');
-        $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1",MONEDA_SIMBOLO.number_format($datos_venta['venta_pagado'],MONEDA_SEPARADOR_MILLAR).' '.MONEDA_NOMBRE),0,0,'C');
+        $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1",MONEDA_SIMBOLO.number_format($datos_venta['venta_pagado'],MONEDA_DECIMALES,MONEDA_SEPARADOR_MILLAR).' '.MONEDA_NOMBRE),0,0,'C');
         
         $pdf->Cell(72,5,iconv("UTF-8", "ISO-8859-1","-------------------------------------------------------------------"),0,0,'C');
         
@@ -111,7 +111,7 @@
 
         $pdf->Cell(18,5,iconv("UTF-8", "ISO-8859-1",""),0,0,'C');
         $pdf->Cell(22,5,iconv("UTF-8", "ISO-8859-1","CAMBIO"),0,0,'C');
-        $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1",MONEDA_SIMBOLO.number_format($datos_venta['venta_cambio'],MONEDA_SEPARADOR_MILLAR).' '.MONEDA_NOMBRE),0,0,'C');
+        $pdf->Cell(32,5,iconv("UTF-8", "ISO-8859-1",MONEDA_SIMBOLO.number_format($datos_venta['venta_cambio'],MONEDA_DECIMALES,MONEDA_SEPARADOR_MILLAR).' '.MONEDA_NOMBRE),0,0,'C');
 
         $pdf->Ln(10);
 
